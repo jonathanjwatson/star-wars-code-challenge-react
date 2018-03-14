@@ -18,22 +18,34 @@ class ResultRow extends Component {
             this.setState(newState);
         })
     }
+    _addToFavorites = (e) => {
+        console.log("Add to favorites")
+        const movieID = e.target.getAttribute('data-id');
+        const movieTitle = e.target.getAttribute('data-name');
+        const payload = {
+            name: movieTitle,
+            oid: movieID
+        }
+        axios.post(`/favorites`, payload)
+        .then(response => {
+            console.log(response);
+        })
+    }
     render() {
         if (this.state.display) {
             return (
                 <div>
                 <Title movie={this.props.movie} _onClick={this._onClick}/>
                 <div className="col-sm-6">
-                    <p>
                         <ul>
-                            <li>Year: {this.props.movie.Year}</li>
-                            <li>IMDB Rating: {this.props.movie.imdbRating}</li>
-                            <li>Plot: {this.props.movie.Plot}</li>
+                            <li>Year: {this.state.movieInfo.Year}</li>
+                            <li>IMDB Rating: {this.state.movieInfo.imdbRating}</li>
+                            <li>Plot: {this.state.movieInfo.Plot}</li>
                         </ul>
-                    </p>
+                        <button onClick={this._addToFavorites} data-id={this.state.movieInfo.imdbID} data-name={this.state.movieInfo.Title}>Add to Favorites</button>
                 </div>
                 <div className="col-sm-6">
-                    <img src={this.props.movie.Poster} />
+                    <img src={this.state.movieInfo.Poster} alt={this.state.movieInfo.Title}/>
                 </div>
 
                 </div>

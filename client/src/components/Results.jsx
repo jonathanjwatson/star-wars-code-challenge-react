@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import ResultRow from './ResultRow';
 
 class Results extends Component {
