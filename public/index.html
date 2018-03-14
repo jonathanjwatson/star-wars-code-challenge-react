@@ -9,11 +9,24 @@
         <title>Your Movie Search</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="./index.js" ></script>
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <h1>Your Movie Search</h1>
+        <form id="movie">
+            <label for="movie-name">Search for a movie</label>
+            <input type="text" id="movie-name"><br>
+      
+            <!-- This button will trigger our AJAX call -->
+            <input id="movie-search" type="submit" value="Search">
+        </form>
+        <div id="search-results">
+            <h1>Your Search Results</h1>
+        </div>
+        
     </body>
 </html>
