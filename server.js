@@ -16,11 +16,12 @@ app.get('/favorites', function(req, res){
   res.send(data);
 });
 
-app.get('favorites', function(req, res){
+app.post('/favorites', function(req, res){
   if(!req.body.name || !req.body.oid){
     res.send("Error");
     return
-  
+  }
+  else {
   var data = JSON.parse(fs.readFileSync('./data.json'));
   data.push(req.body);
   fs.writeFile('./data.json', JSON.stringify(data));
