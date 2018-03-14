@@ -14,6 +14,7 @@ $(document).ready(function() {
             movieResults = response.Search;
             console.log(movieResults);
             if (response.Response === "True") {
+                $('#search-results').empty();
                 movieResults.map((movie) => {
 
                         var movieRow = $("<div>");
@@ -66,5 +67,22 @@ $(document).ready(function() {
             console.log(response);
         })
     });
+
+    // Request Favorites array //
+    $('#view-favorites').on('click', function(e) {
+        e.preventDefault();
+        $.get('/favorites', function(response) {
+            console.log(response);
+            $('#search-results').empty();
+            response.map((movie) => {
+
+                var movieRow = $("<div>");
+                movieRow.addClass("row");
+                movieRow.attr('id', `${movie.oid}`);
+                movieRow.append(`<h3 data-id=${movie.oid}>${movie.name} (Click to see more...)</h3>`);
+                $('#search-results').append(movieRow);
+        })
+        })
+    })
 
 });
