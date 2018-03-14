@@ -17,6 +17,8 @@ app.get('/favorites', function(req, res){
 });
 
 app.post('/favorites', function(req, res){
+  console.log("Trying to post to favorites")
+  console.log(req.body);
   if(!req.body.name || !req.body.oid){
     res.send("Error");
     return
