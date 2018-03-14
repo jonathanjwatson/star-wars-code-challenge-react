@@ -31,7 +31,6 @@ class Home extends Component {
     render() {
         return (
             <div>
-                This is my home page.
                 <SearchBar _handleChange={this._handleChange} _handleSubmit={this._handleSubmit}/>
                 <Results searchResults={this.state.searchResults} />
             </div>
