@@ -4,6 +4,8 @@ var app = express();
 var fs = require('fs');
 var path = require('path');
 
+var port = process.env.PORT || 3000;
+
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
@@ -31,6 +33,6 @@ app.post('/favorites', function(req, res){
   res.send(data);
 }});
 
-app.listen(3000, function(){
-  console.log("Listening on port 3000");
+app.listen(port, function(){
+  console.log("Listening on port " + port);
 });
