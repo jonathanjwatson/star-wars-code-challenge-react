@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Title from './Title';
 
-class ResultRow extends Component {
+class FavoriteRow extends Component {
     state = {
         movieInfo: {},
         display: false
@@ -18,36 +18,21 @@ class ResultRow extends Component {
             this.setState(newState);
         })
     }
-    _addToFavorites = (e) => {
-        console.log("Add to favorites")
-        const movieID = e.target.getAttribute('data-id');
-        const movieTitle = e.target.getAttribute('data-name');
-        const payload = {
-            name: movieTitle,
-            oid: movieID
-        }
-        axios.post(`/favorites`, payload)
-        .then(response => {
-            console.log(response);
-            alert("Successfully added your movie!")
-        })
-        .catch(err => {
-            console.log(err.message);
-            alert("Oops! Something went wrong. Please try again")
-        })
-    }
     render() {
+        const movie = this.props.movie;
+        movie.Title = movie.name;
+        movie.imdbID = movie.oid;
         if (this.state.display) {
             return (
                 <div>
-                <Title movie={this.props.movie} _onClick={this._onClick}/>
+                <Title movie={movie} _onClick={this._onClick}/>
                 <div className="col-sm-6">
                         <ul>
                             <li>Year: {this.state.movieInfo.Year}</li>
                             <li>IMDB Rating: {this.state.movieInfo.imdbRating}</li>
                             <li>Plot: {this.state.movieInfo.Plot}</li>
                         </ul>
-                        <button onClick={this._addToFavorites} data-id={this.state.movieInfo.imdbID} data-name={this.state.movieInfo.Title}>Add to Favorites</button>
+                    
                 </div>
                 <div className="col-sm-6">
                     <img src={this.state.movieInfo.Poster} alt={this.state.movieInfo.Title}/>
@@ -57,10 +42,10 @@ class ResultRow extends Component {
             )
         } else {
             return (
-                <Title movie={this.props.movie} _onClick={this._onClick}/>
+                <Title movie={movie} _onClick={this._onClick}/>
             )
         }
 }
 }
 
-export default ResultRow;
+export default FavoriteRow;

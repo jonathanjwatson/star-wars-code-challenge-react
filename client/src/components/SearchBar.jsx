@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class SearchBar extends Component {
     render() {
@@ -13,7 +14,7 @@ class SearchBar extends Component {
                     </form>
                 </div>
                 <div className="col-sm-6">
-                    <button id="view-favorites">View Favorites</button>
+                    <Link to="/favorites"><button id="view-favorites">View Favorites</button></Link>
                 </div>
         
             </div>
