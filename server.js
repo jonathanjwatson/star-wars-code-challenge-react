@@ -10,15 +10,15 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
-app.use('/', express.static(path.join(__dirname, 'public')));
+// app.use('/', express.static(path.join(__dirname, 'public')));
 
-app.get('/favorites', function(req, res){
+app.get('/api/favorites', function(req, res){
   var data = fs.readFileSync('./data.json');
   res.setHeader('Content-Type', 'application/json');
   res.send(data);
 });
 
-app.post('/favorites', function(req, res){
+app.post('/api/favorites', function(req, res){
   console.log("Trying to post to favorites")
   console.log(req.body);
   if(!req.body.name || !req.body.oid){
@@ -32,6 +32,11 @@ app.post('/favorites', function(req, res){
   res.setHeader('Content-Type', 'application/json');
   res.send(data);
 }});
+
+app.use(express.static(__dirname + '/client/build/'));
+app.get('*', (req, res) => {
+  res.sendFile(__dirname + '/client/build/index.html')
+})
 
 app.listen(port, function(){
   console.log("Listening on port " + port);

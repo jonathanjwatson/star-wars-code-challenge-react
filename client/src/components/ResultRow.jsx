@@ -26,7 +26,7 @@ class ResultRow extends Component {
             name: movieTitle,
             oid: movieID
         }
-        axios.post(`/favorites`, payload)
+        axios.post(`/api/favorites`, payload)
         .then(response => {
             console.log(response);
             alert("Successfully added your movie!")

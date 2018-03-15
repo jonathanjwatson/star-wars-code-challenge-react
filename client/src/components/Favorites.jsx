@@ -9,7 +9,7 @@ class Favorites extends Component {
         movieArray: []
     }
     componentWillMount() {
-        axios.get('/favorites')
+        axios.get('/api/favorites')
         .then(response => {
             console.log(response.data);
             const newState = {...this.state};
